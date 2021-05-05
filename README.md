@@ -13,7 +13,7 @@
 
 - Record bags
 
-    *rosbag record -O <file_name> /HLposition
+    *rosbag record -O <file_name> /HLposition*
 
 - Run scripts
 
