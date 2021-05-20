@@ -222,3 +222,7 @@ add_dependencies(subscriber operator4_0_generate_messages_cpp)
 add_executable(robot_sender src/robot_sender.cpp)
 target_link_libraries(robot_sender ${catkin_LIBRARIES})
 add_dependencies(robot_sender operator4_0_generate_messages_cpp)
+
+add_executable(ur5_sender src/ur5_sender.cpp)
+target_link_libraries(ur5_sender ${catkin_LIBRARIES})
+add_dependencies(ur5_sender operator4_0_generate_messages_cpp)
