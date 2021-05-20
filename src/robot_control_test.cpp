@@ -22,8 +22,8 @@ using namespace std;
 
 int client_sockfd;  // server socket (global for sig capture)
 
-#define PORT 50002 // The same port as used by the server
-#define HOST "192.168.1.74" // The remote host
+#define PORT 30003 // The same port as used by the server
+#define HOST "192.168.11.76" // The remote host
 
 char STOP= 'n';
 char option =' ';
@@ -52,12 +52,13 @@ int main() {
            //Connect to remote server
           if (connect(client_sockfd , (struct sockaddr *)&serv_addr , sizeof(serv_addr)) < 0)
           {
+              cout << "Connected" << endl;
               return 1;
           }
 
 
 
-          double x=0.431075;
+          double x=-0.431075;
           double y=0.632364;
           double z=0.0915;
           double rx=1.57;
