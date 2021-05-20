@@ -37,7 +37,7 @@ void hololensCallback(const geometry_msgs::Vector3::ConstPtr& hololens)
     vector<string> vec;
     ostringstream ss;
     vec.push_back("def myProg():\n");
-    ss << "movel(p[" << - hololens->x << "," << hololens->z << "," << hololens->y << ", 1.57, 0.00, 0.00], a=0.01, v=0.1, r=0)\n";
+    ss << "movel(p[" << - hololens->x << "," << hololens->z << "," << hololens->y << ", 1.57, 0.00, 0.00], a=0.01, v=0.1, r=0.01)\n";
     vec.push_back(ss.str());
     ss.str(std::string());
     ss.clear();
