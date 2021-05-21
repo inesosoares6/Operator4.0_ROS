@@ -11,7 +11,7 @@ std::ofstream myfile;
 void hololensCallback(const geometry_msgs::Vector3::ConstPtr& hololens)
 {
     ROS_INFO("Recording");
-    myfile << "MOVEL [[" << - hololens->x << "," << hololens->z << "," << hololens->y << "],[0.7071,0,0.7071,0],[0,0,0,0][0,0,0,9E+09,9E+09,9E+09]], v1000, fine, tool0;\n";
+    myfile << "movel(p[" << - hololens->x << "," << hololens->z << "," << hololens->y << ", 1.57, 0.00, 0.00], a=0.01, v=0.1, r=0.01)\n";
 }
 
 int main(int argc, char **argv)
@@ -22,14 +22,12 @@ int main(int argc, char **argv)
 
   ros::Subscriber sub_HL2 = n_HL.subscribe("HLposition", 1000, hololensCallback);
 
-  myfile.open("ABB_tester.mod");
-  myfile << "MODULE MainModule\n";
-  myfile << "PROC main()\n";
+  myfile.open("UR5_tester");
+  myfile << "def myProg():\n";
 
   ros::spin();
 
-  myfile << "END\n";
-  myfile << "PROCENDMODULE\n";
+  myfile << "end\n";
   myfile.close();
 
   return 0;
