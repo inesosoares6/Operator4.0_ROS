@@ -230,3 +230,11 @@ add_dependencies(ur5_sender operator4_0_generate_messages_cpp)
 add_executable(tester_abb src/tester_abb.cpp)
 target_link_libraries(tester_abb ${catkin_LIBRARIES})
 add_dependencies(tester_abb operator4_0_generate_messages_cpp)
+
+add_executable(tester_ur5 src/tester_ur5.cpp)
+target_link_libraries(tester_ur5 ${catkin_LIBRARIES})
+add_dependencies(tester_ur5 operator4_0_generate_messages_cpp)
+
+add_executable(record2csv src/record2csv.cpp)
+target_link_libraries(record2csv ${catkin_LIBRARIES})
+add_dependencies(record2csv operator4_0_generate_messages_cpp)
