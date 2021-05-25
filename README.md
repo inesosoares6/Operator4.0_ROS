@@ -11,14 +11,20 @@
 
     *rostopic echo /HLposition*
 
-- Record bags
+- Record & play bags
 
     *rosbag record -O <file_name> /HLposition*
+    
+    *rosbag play <file_name>*
 
 - Run scripts
-
-    *rosrun operator4_0 robot_control_test*
     
-    *rosrun operator4_0 subscriber*
+    *rosrun operator4_0 ur5_sender* -> subscribes to HL2 topic, builds and sends program to UR5
     
-    *rosrun operator4_0 robot_sender*
+    *rosrun operator4_0 tester_ur5* -> subscribes to HL2 topic, builds and prints the program for UR5
+    
+    *rosrun operator4_0 tester_abb* -> subscribes to HL2 topic, builds and prints the program for ABB
+    
+    *rosrun operator4_0 subscriber* -> subscribes to HL2 topic and prints the coordinates to a csv file
+    
+    *rosrun operator4_0 robot_control_test* -> program to test the UR5 movements
