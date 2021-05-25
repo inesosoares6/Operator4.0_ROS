@@ -68,7 +68,7 @@ int main(int argc, char **argv) {
 
     vec.push_back("def myProg():\n");
 
-    ros::init(argc, argv, "subscriber");
+    ros::init(argc, argv, "ur5_sender");
     ros::NodeHandle n_HL;
     ros::Subscriber sub_HL2 = n_HL.subscribe("HLposition", 1000, hololensCallback);
            
