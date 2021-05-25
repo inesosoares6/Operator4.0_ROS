@@ -23,7 +23,7 @@ int main(int argc, char **argv)
 
   ros::Subscriber sub_HL2 = n_HL.subscribe("HLposition", 1000, hololensCallback);
 
-  myfile.open("HoloLens2_data");
+  myfile.open("HoloLens2_data.csv");
   myfile << "HL_x,HL_y,HL_z\n";
 
   ros::spin();
