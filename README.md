@@ -25,6 +25,6 @@
     
     *rosrun operator4_0 tester_abb* -> subscribes to HL2 topic, builds and prints the program for ABB
     
-    *rosrun operator4_0 subscriber* -> subscribes to HL2 topic and prints the coordinates to a csv file
+    *rosrun operator4_0 record2csv* -> subscribes to HL2 topic and prints the coordinates to a csv file
     
     *rosrun operator4_0 robot_control_test* -> program to test the UR5 movements
