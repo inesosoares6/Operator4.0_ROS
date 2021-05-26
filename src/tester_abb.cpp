@@ -43,7 +43,7 @@ void statusCallback(const std_msgs::String::ConstPtr& status)
 
 void hololensCallback(const geometry_msgs::Vector3::ConstPtr& hololens)
 {
-    myfile << "MOVEL [[" << hololens->y << "," << hololens->z << "," << hololens->x << "],[0.7071,0,0.7071,0],[1,0,-1,0][9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]], v250, z30, toolSprayGun;\n";
+    myfile << "MOVEL [[" << hololens->y << "," << hololens->z << "," << hololens->x << "],[0.5,-0.5,0.5,0.5],[1,0,-1,0][9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]], v250, z30, toolSprayGun;\n";
 }
 
 int main(int argc, char **argv)
@@ -63,7 +63,6 @@ int main(int argc, char **argv)
   ros::Subscriber sub_status = n_HL.subscribe("HLstatus", 1000, statusCallback);
 
   ros::spin();
-
 
   return 0;
 }
