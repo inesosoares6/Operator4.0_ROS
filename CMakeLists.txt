@@ -243,6 +243,14 @@ add_executable(talker src/talker.cpp)
 target_link_libraries(talker ${catkin_LIBRARIES})
 add_dependencies(talker operator4_0_generate_messages_cpp)
 
-add_executable(ur5_sender_tester src/talker.cpp)
+add_executable(ur5_sender_tester src/ur5_sender_tester.cpp)
 target_link_libraries(ur5_sender_tester ${catkin_LIBRARIES})
 add_dependencies(ur5_sender_tester operator4_0_generate_messages_cpp)
+
+add_executable(talker_start_doc src/talker_start_doc.cpp)
+target_link_libraries(talker_start_doc ${catkin_LIBRARIES})
+add_dependencies(talker_start_doc operator4_0_generate_messages_cpp)
+
+add_executable(talker_send_doc src/talker_send_doc.cpp)
+target_link_libraries(talker_send_doc ${catkin_LIBRARIES})
+add_dependencies(talker_send_doc operator4_0_generate_messages_cpp)
