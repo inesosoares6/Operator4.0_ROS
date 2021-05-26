@@ -11,12 +11,12 @@ std::ofstream myfile;
 void hololensCallback(const geometry_msgs::Vector3::ConstPtr& hololens)
 {
     ROS_INFO("Recording");
-    myfile << "movel(p[" << - hololens->x << "," << hololens->z << "," << hololens->y << ", 1.57, 0.00, 0.00], a=0.01, v=0.1, r=0.01)\n";
+    myfile << "movel(p[" << hololens->x << "," << hololens->y << "," << hololens->z << ", 2.2, 2.2, -0.3], a=0.01, v=0.5, r=0.1)\n";
 }
 
 int main(int argc, char **argv)
 {
-  ros::init(argc, argv, "subscriber");
+  ros::init(argc, argv, "tester_ur5");
 
   ros::NodeHandle n_HL;
 

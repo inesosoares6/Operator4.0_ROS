@@ -37,11 +37,12 @@ void hololensCallback(const geometry_msgs::Vector3::ConstPtr& hololens)
     vector<string> vec;
     ostringstream ss;
     vec.push_back("def myProg():\n");
-    ss << "movel(p[" << - hololens->x << "," << hololens->z << "," << hololens->y << ", 1.57, 0.00, 0.00], a=0.01, v=0.1, r=0.01)\n";
+    ss << "movel(p[" << - hololens->z << "," << - hololens->x << "," << hololens->y << ", 2.2,2.2,-0.3], a=0.01, v=0.5, r=0.1)\n";
     vec.push_back(ss.str());
     ss.str(std::string());
     ss.clear();
     vec.push_back("end\n");
+
 
     for(vector<string>::iterator it = vec.begin(); it != vec.end(); ++it)
     {
@@ -73,10 +74,10 @@ int main(int argc, char **argv) {
         return 1;
     }
 
-    ros::init(argc, argv, "subscriber");
+    ros::init(argc, argv, "robot_sender");
     ros::NodeHandle n_HL;
     ros::Subscriber sub_HL2 = n_HL.subscribe("HLposition", 1000, hololensCallback);
-           
+
     ros::spin();
 
     //Close Socket

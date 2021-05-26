@@ -26,8 +26,8 @@ using namespace std;
 
 int client_sockfd;  // server socket (global for sig capture)
 
-#define PORT 50002 // The same port as used by the server
-#define HOST "192.168.1.74" // The remote host
+#define PORT 30002 // The same port as used by the server
+#define HOST "192.168.1.11" // The remote host
 
 char STOP= 'n';
 char option =' ';
@@ -68,7 +68,7 @@ int main(int argc, char **argv) {
 
     vec.push_back("def myProg():\n");
 
-    ros::init(argc, argv, "ur5_sender");
+    ros::init(argc, argv, "subscriber");
     ros::NodeHandle n_HL;
     ros::Subscriber sub_HL2 = n_HL.subscribe("HLposition", 1000, hololensCallback);
            
