@@ -238,3 +238,11 @@ add_dependencies(tester_ur5 operator4_0_generate_messages_cpp)
 add_executable(record2csv src/record2csv.cpp)
 target_link_libraries(record2csv ${catkin_LIBRARIES})
 add_dependencies(record2csv operator4_0_generate_messages_cpp)
+
+add_executable(talker src/talker.cpp)
+target_link_libraries(talker ${catkin_LIBRARIES})
+add_dependencies(talker operator4_0_generate_messages_cpp)
+
+add_executable(ur5_sender_tester src/talker.cpp)
+target_link_libraries(ur5_sender_tester ${catkin_LIBRARIES})
+add_dependencies(ur5_sender_tester operator4_0_generate_messages_cpp)

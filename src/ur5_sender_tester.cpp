@@ -32,28 +32,20 @@ int client_sockfd;  // server socket (global for sig capture)
 char STOP= 'n';
 char option =' ';
 
-vector<string> vec;
-ostringstream ss;
+std::ofstream myfile;
 
 void statusCallback(const String status)
 {
     if(status == "start_robot"){
         // SEND TO ROBOT
-        vec.push_back("end\n");
-        for(vector<string>::iterator it = vec.begin(); it != vec.end(); ++it)
-        {
-            write (client_sockfd, it->c_str(), it->length());
-            sleep(1);
-        }
+        myfile << "end\n";
+        myfile.close();
     }
 }
 
 void hololensCallback(const geometry_msgs::Vector3::ConstPtr& hololens)
 {
-    ss << "movel(p[" << hololens->x << "," << hololens->y << "," << hololens->z << ", 2.2, 2.2, -0.3], a=0.01, v=0.5, r=0.1)\n";
-    vec.push_back(ss.str());
-    ss.str(std::string());
-    ss.clear();
+    myfile << "movel(p[" << hololens->x << "," << hololens->y << "," << hololens->z << ", 2.2, 2.2, -0.3], a=0.01, v=0.5, r=0.1)\n";
 }
 
 int main(int argc, char **argv) {
@@ -79,7 +71,8 @@ int main(int argc, char **argv) {
         return 1;
     }
 
-    vec.push_back("def myProg():\n");
+    myfile.open("UR5_tester");
+    myfile << "def myProg():\n";
 
     ros::init(argc, argv, "subscriber");
     ros::NodeHandle n_HL;
