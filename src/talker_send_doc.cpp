@@ -5,7 +5,7 @@
 int main(int argc, char **argv)
 {
 
-  ros::init(argc, argv, "talker");
+  ros::init(argc, argv, "talker_send_doc");
   ros::NodeHandle n;
   ros::Publisher chatter_pub = n.advertise<std_msgs::String>("HLstatus", 1000);
   ros::Rate loop_rate(10);
@@ -15,7 +15,7 @@ int main(int argc, char **argv)
   {
     std_msgs::String msg;
     std::stringstream ss;
-    ss << "start_robot";
+    ss << "send_doc";
     msg.data = ss.str();
     ROS_INFO("%s", msg.data.c_str());
     chatter_pub.publish(msg);

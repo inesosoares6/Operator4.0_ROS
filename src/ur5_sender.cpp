@@ -35,15 +35,36 @@ char option =' ';
 vector<string> vec;
 ostringstream ss;
 
-void statusCallback(const String status)
+bool sent2robot;
+bool start_doc;
+
+std_msgs::String msg2;
+std::stringstream initiate_doc;
+std_msgs::String msg1;
+std::stringstream finalize_doc;
+
+void statusCallback(const std_msgs::String::ConstPtr& status)
 {
-    if(status == "start_robot"){
-        // SEND TO ROBOT
-        vec.push_back("end\n");
-        for(vector<string>::iterator it = vec.begin(); it != vec.end(); ++it)
-        {
-            write (client_sockfd, it->c_str(), it->length());
-            sleep(1);
+    if(strcmp(status->data.c_str(), msg1.data.c_str())==0){
+        if(!sent2robot){
+            // SEND TO ROBOT
+            vec.push_back("end\n");
+            for(vector<string>::iterator it = vec.begin(); it != vec.end(); ++it)
+            {
+                write (client_sockfd, it->c_str(), it->length());
+                sleep(1); // CHECK IF THIS IS NECESSARY
+            }
+            vec.clear();
+            ROS_INFO("File sent to UR5");
+            sent2robot = true;
+            start_doc = false;
+        }
+    } else if(strcmp(status->data.c_str(), msg2.data.c_str())==0){
+        if(!start_doc){
+            // START DOC
+            vec.push_back("def myProg():\n");
+            start_doc = true;
+            sent2robot = false;
         }
     }
 }
@@ -79,9 +100,14 @@ int main(int argc, char **argv) {
         return 1;
     }
 
-    vec.push_back("def myProg():\n");
+    start_doc = false;
+    sent2robot = false;
+    initiate_doc << "start_doc";
+    msg2.data = initiate_doc.str();
+    finalize_doc << "send_doc";
+    msg1.data = finalize_doc.str();
 
-    ros::init(argc, argv, "subscriber");
+    ros::init(argc, argv, "ur5_sender");
     ros::NodeHandle n_HL;
     ros::Subscriber sub_HL2 = n_HL.subscribe("HLposition", 1000, hololensCallback);
     ros::Subscriber sub_status = n_HL.subscribe("HLstatus", 1000, statusCallback);
