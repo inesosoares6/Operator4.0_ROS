@@ -8,10 +8,42 @@ using namespace geometry_msgs;
 
 std::ofstream myfile;
 
+bool sent2robot;
+bool start_doc;
+
+std_msgs::String msg2;
+std::stringstream initiate_doc;
+std_msgs::String msg1;
+std::stringstream finalize_doc;
+
+void statusCallback(const std_msgs::String::ConstPtr& status)
+{
+    if(strcmp(status->data.c_str(), msg1.data.c_str())==0){
+        if(!sent2robot){
+            // SEND TO ROBOT
+            myfile << "END\n";
+            myfile << "PROCENDMODULE\n";
+            myfile.close();
+            ROS_INFO("File ready to go to ABB");
+            sent2robot = true;
+            start_doc = false;
+        }
+    } else if(strcmp(status->data.c_str(), msg2.data.c_str())==0){
+        if(!start_doc){
+            // START DOC
+            myfile.open("ABB_tester.mod");
+            myfile << "MODULE MainModule\n";
+            myfile << "PROC main()\n";
+            ROS_INFO("File opened");
+            start_doc = true;
+            sent2robot = false;
+        }
+    }
+}
+
 void hololensCallback(const geometry_msgs::Vector3::ConstPtr& hololens)
 {
-    ROS_INFO("Recording");
-    myfile << "MOVEL [[" << hololens->x << "," << hololens->y << "," << hololens->z << "],[0.7071,0,0.7071,0],[0,0,0,0][0,0,0,9E+09,9E+09,9E+09]], v1000, fine, tool0;\n";
+    myfile << "MOVEL [[" << hololens->y << "," << hololens->z << "," << hololens->x << "],[0.7071,0,0.7071,0],[1,0,-1,0][9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]], v250, z30, toolSprayGun;\n";
 }
 
 int main(int argc, char **argv)
@@ -20,17 +52,18 @@ int main(int argc, char **argv)
 
   ros::NodeHandle n_HL;
 
-  ros::Subscriber sub_HL2 = n_HL.subscribe("HLposition", 1000, hololensCallback);
+  start_doc = false;
+  sent2robot = false;
+  initiate_doc << "start_doc";
+  msg2.data = initiate_doc.str();
+  finalize_doc << "send_doc";
+  msg1.data = finalize_doc.str();
 
-  myfile.open("ABB_tester");
-  myfile << "MODULE MainModule\n";
-  myfile << "PROC main()\n";
+  ros::Subscriber sub_HL2 = n_HL.subscribe("HLposition", 1000, hololensCallback);
+  ros::Subscriber sub_status = n_HL.subscribe("HLstatus", 1000, statusCallback);
 
   ros::spin();
 
-  myfile << "END\n";
-  myfile << "PROCENDMODULE\n";
-  myfile.close();
 
   return 0;
 }

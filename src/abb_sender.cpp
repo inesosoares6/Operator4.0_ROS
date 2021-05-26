@@ -37,7 +37,7 @@ ostringstream ss;
 
 void hololensCallback(const geometry_msgs::Vector3::ConstPtr& hololens)
 {
-    ss << "MOVEL [[" << - hololens->x << "," << hololens->z << "," << hololens->y << "],[0.7071,0,0.7071,0],[0,0,0,0][0,0,0,9E+09,9E+09,9E+09]], v1000, fine, tool0;\n";
+    ss << "MOVEL [[" << - hololens->y << "," << hololens->z << "," << hololens->x << "],[0.7071,0,0.7071,0],[0,0,0,0][0,0,0,9E+09,9E+09,9E+09]], v1000, fine, tool0;\n";
     vec.push_back(ss.str());
     ss.str(std::string());
     ss.clear();

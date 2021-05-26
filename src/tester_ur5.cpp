@@ -11,7 +11,7 @@ std::ofstream myfile;
 void hololensCallback(const geometry_msgs::Vector3::ConstPtr& hololens)
 {
     ROS_INFO("Recording");
-    myfile << "movel(p[" << hololens->x << "," << hololens->y << "," << hololens->z << ", 2.2, 2.2, -0.3], a=0.01, v=0.5, r=0.1)\n";
+    myfile << "movel(p[" << hololens->y << "," << hololens->z << "," << hololens->x << ", 2.2, 2.2, -0.3], a=0.01, v=0.5, r=0.1)\n";
 }
 
 int main(int argc, char **argv)
