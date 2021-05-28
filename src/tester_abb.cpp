@@ -21,8 +21,8 @@ void statusCallback(const std_msgs::String::ConstPtr& status)
     if(strcmp(status->data.c_str(), msg1.data.c_str())==0){
         if(!sent2robot){
             // SEND TO ROBOT
-            myfile << "END\n";
-            myfile << "PROCENDMODULE\n";
+            myfile << "ENDPROC\n";
+            myfile << "ENDMODULE\n";
             myfile.close();
             ROS_INFO("File ready to go to ABB");
             sent2robot = true;
@@ -31,7 +31,7 @@ void statusCallback(const std_msgs::String::ConstPtr& status)
     } else if(strcmp(status->data.c_str(), msg2.data.c_str())==0){
         if(!start_doc){
             // START DOC
-            myfile.open("ABB_tester.mod");
+            myfile.open("MainModule.mod");
             myfile << "MODULE MainModule\n";
             myfile << "PROC main()\n";
             ROS_INFO("File opened");
@@ -43,7 +43,7 @@ void statusCallback(const std_msgs::String::ConstPtr& status)
 
 void hololensCallback(const geometry_msgs::Vector3::ConstPtr& hololens)
 {
-    myfile << "MOVEL [[" << hololens->y << "," << hololens->z << "," << hololens->x << "],[0.5,-0.5,0.5,0.5],[1,0,-1,0][9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]], v250, z30, toolSprayGun;\n";
+    myfile << "MoveL [[" << hololens->y * 1000 << "," << hololens->z * 1000 << "," << hololens->x * 1000 << "],[0.5,-0.5,0.5,0.5],[1,0,-1,1],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]], v200, z50, toolSprayGun;\n";
 }
 
 int main(int argc, char **argv)

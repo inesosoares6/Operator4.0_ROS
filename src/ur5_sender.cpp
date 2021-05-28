@@ -27,7 +27,7 @@ using namespace std;
 int client_sockfd;  // server socket (global for sig capture)
 
 #define PORT 30002 // The same port as used by the server
-#define HOST "192.168.1.11" // The remote host
+#define HOST "192.168.1.66" // The remote host
 
 char STOP= 'n';
 char option =' ';
@@ -52,7 +52,7 @@ void statusCallback(const std_msgs::String::ConstPtr& status)
             for(vector<string>::iterator it = vec.begin(); it != vec.end(); ++it)
             {
                 write (client_sockfd, it->c_str(), it->length());
-                sleep(1); // CHECK IF THIS IS NECESSARY
+                //sleep(1); // CHECK IF THIS IS NECESSARY
             }
             vec.clear();
             ROS_INFO("File sent to UR5");
@@ -63,6 +63,7 @@ void statusCallback(const std_msgs::String::ConstPtr& status)
         if(!start_doc){
             // START DOC
             vec.push_back("def myProg():\n");
+            ROS_INFO("File opened");
             start_doc = true;
             sent2robot = false;
         }
