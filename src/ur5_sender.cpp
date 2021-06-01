@@ -52,7 +52,6 @@ void statusCallback(const std_msgs::String::ConstPtr& status)
             for(vector<string>::iterator it = vec.begin(); it != vec.end(); ++it)
             {
                 write (client_sockfd, it->c_str(), it->length());
-                //sleep(1); // CHECK IF THIS IS NECESSARY
             }
             vec.clear();
             ROS_INFO("File sent to UR5");
