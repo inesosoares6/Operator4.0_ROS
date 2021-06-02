@@ -26,3 +26,8 @@
 - *tester_ur5* -> subscribes to HL2 topic and generates the program for UR5 (language: *URScript*)
 - *ur5_sender_test_circle* -> program to test the UR5 movements (draws a circle)
 - *record2csv* -> subscribes to HL2 topic and prints the coordinates to a csv file
+
+## Author
+Inês de Oliveira Soares (ines.o.soares@inesctec.pt | up201606615@up.pt)
+- Master Student - Electrical and Computer Engineering @ FEUP
+- Master Thesis Development @ INESC TEC
