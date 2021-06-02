@@ -48,7 +48,7 @@ void hololensCallback(const geometry_msgs::Vector3::ConstPtr& hololens)
 
 int main(int argc, char **argv)
 {
-  ros::init(argc, argv, "tester_abb");
+  ros::init(argc, argv, "abb_translator");
 
   ros::NodeHandle n_HL;
 

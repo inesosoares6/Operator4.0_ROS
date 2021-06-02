@@ -1,8 +1,0 @@
-MODULE MainModule
-	LOCAL CONST robtarget p0:=[[25.66,807.80,394.23],[0.500673,-0.499656,0.499407,0.500262],[1,0,-1,1],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
-	CONST robtarget p1:=[[-524.20,807.81,394.22],[0.500683,-0.499647,0.499427,0.500245],[1,0,-1,1],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
-	PROC main()
-		MoveL p0, v200, z50, toolSprayGun;
-		MoveL p1, v200, z50, toolSprayGun;
-	ENDPROC
-ENDMODULE

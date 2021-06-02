@@ -209,8 +209,6 @@ include_directories(
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
 
-
-
 add_executable(robot_control_test src/robot_control_test.cpp)
 target_link_libraries(robot_control_test ${catkin_LIBRARIES})
 add_dependencies(robot_control_test operator4_0_generate_messages_cpp)
@@ -227,9 +225,9 @@ add_executable(ur5_sender src/ur5_sender.cpp)
 target_link_libraries(ur5_sender ${catkin_LIBRARIES})
 add_dependencies(ur5_sender operator4_0_generate_messages_cpp)
 
-add_executable(tester_abb src/tester_abb.cpp)
-target_link_libraries(tester_abb ${catkin_LIBRARIES})
-add_dependencies(tester_abb operator4_0_generate_messages_cpp)
+add_executable(abb_translator src/abb_translator.cpp)
+target_link_libraries(abb_translator ${catkin_LIBRARIES})
+add_dependencies(abb_translator operator4_0_generate_messages_cpp)
 
 add_executable(tester_ur5 src/tester_ur5.cpp)
 target_link_libraries(tester_ur5 ${catkin_LIBRARIES})
@@ -254,3 +252,7 @@ add_dependencies(talker_start_doc operator4_0_generate_messages_cpp)
 add_executable(talker_send_doc src/talker_send_doc.cpp)
 target_link_libraries(talker_send_doc ${catkin_LIBRARIES})
 add_dependencies(talker_send_doc operator4_0_generate_messages_cpp)
+
+add_executable(ur5_sender_test_circle src/ur5_sender_test_circle.cpp)
+target_link_libraries(ur5_sender_test_circle ${catkin_LIBRARIES})
+add_dependencies(ur5_sender_test_circle operator4_0_generate_messages_cpp)
