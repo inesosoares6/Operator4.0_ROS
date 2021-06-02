@@ -3,7 +3,7 @@
 **Devices**: Microsoft HoloLens 2, Universal Robots UR5, ABB IRB 2600
 
 ## ROS terminals
-- Open bridge to HoloLens 2 communication:
+- Open bridge to communicate with HoloLens 2 application
 
     *roslaunch rosbridge_server rosbridge_websocket.launch*
 
