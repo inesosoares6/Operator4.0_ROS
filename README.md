@@ -15,6 +15,6 @@
 
 - Run scripts
     
-    *rosrun operator4_0 ur5_sender* -> subscribes to HL2 topic, builds and sends program to UR5
+    *rosrun operator4_0 ur5_sender* -> subscribes to HL2 topic, builds and sends program to UR5 (language: *URScript*)
     
-    *rosrun operator4_0 abb_translator* -> subscribes to HL2 topic, builds and generates the program for ABB
+    *rosrun operator4_0 abb_translator* -> subscribes to HL2 topic, builds and generates the program for ABB (language: *RAPID*)
