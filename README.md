@@ -27,6 +27,15 @@
 - *ur5_sender_test_circle* -> program to test the UR5 movements (draws a circle)
 - *record2csv* -> subscribes to HL2 topic and prints the coordinates to a csv file
 
+## Generated ABB programs
+Inside the directory *programs*:
+- ABB_square -> generated program where the robot draws a square
+- ABB_rectangle -> generated program where the robot draws a rectangle
+- ABB_triangle -> generated program where the robot draws a triangle
+- ABB_cube -> generated program where the robot draws part of a cube, showing that the movement can be done in 3D
+
+These programs can be loaded in ABB IRB 2600 teaching pedant, through the file with the *.pgf* in each folder.
+
 ## Author
 Inês de Oliveira Soares (ines.o.soares@inesctec.pt | up201606615@up.pt)
 - Master Student - Electrical and Computer Engineering @ FEUP
